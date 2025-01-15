@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default class ApiService {
-    static BASE_URL = import.meta.env.BACKEND_URL;
+    static BASE_URL = "http://localhost:8080";
 
     static getHeader() {
         // since we need token to be passed in header for every request
@@ -14,17 +14,17 @@ export default class ApiService {
 
     // Auth and User Related Endpoints
     static async registerUser(registrationdetails) {
-        const response = await axios.post(`${this.BASE_URL/auth/register}`, registrationdetails)
+        const response = await axios.post(`${this.BASE_URL / auth / register}`, registrationdetails)
         return response.data;
     }
 
     static async loginUser(logindetails) {
-        const response = await axios.post(`${this.BASE_URL/auth/login}`, logindetails)
+        const response = await axios.post(`${this.BASE_URL / auth / login}`, logindetails)
         return response.data;
     }
 
     static async getLoggedInUserInfo() {
-        const response = await axios.get(`${this.BASE_URL/user/my-info}` , {
+        const response = await axios.get(`${this.BASE_URL / user / my - info}`, {
             headers: this.getHeader()
         })
         return response.data;
@@ -33,14 +33,14 @@ export default class ApiService {
 
     // Product Endpoints
     static async addProduct(formData) {
-        const response = await axios.post(`${this.BASE_URL/product/create}`, formData , {
+        const response = await axios.post(`${this.BASE_URL / product / create}`, formData, {
             headers: this.getHeader()
         })
         return response.data;
     }
 
-    static async updateProduct(productId , formData) {
-        const response = await axios.put(`${this.BASE_URL}/product/update/${productId}`, formData , {
+    static async updateProduct(productId, formData) {
+        const response = await axios.put(`${this.BASE_URL}/product/update/${productId}`, formData, {
             headers: this.getHeader()
         })
 
@@ -54,7 +54,7 @@ export default class ApiService {
 
     static async searchProducts(searchValue) {
         const response = await axios.get(`${this.BASE_URL}/product/search`, {
-            params: {searchValue}
+            params: { searchValue }
         })
         return response.data;
     }
@@ -70,7 +70,7 @@ export default class ApiService {
     }
 
     static async deleteProductById(productId) {
-        const response = await axios.delete(`${this.BASE_URL}/product/delete/${productId}`, 
+        const response = await axios.delete(`${this.BASE_URL}/product/delete/${productId}`,
             {
                 headers: this.getHeader()
             }
@@ -78,16 +78,16 @@ export default class ApiService {
         return response.data;
     }
 
-    static async updateOrderItemStatus(orderItemId , status) {
+    static async updateOrderItemStatus(orderItemId, status) {
         const response = await axios.put(`${this.BASE_URL}/order/update-item-status/${orderItemId}`, {
             header: this.getHeader(),
-            params: {status}
+            params: { status }
         })
-        
+
         return response.data;
     }
 
-    
+
     // Product Endpoints
     static async createCategory(body) {
         const response = await axios.post(`${this.BASE_URL}/category/create`, body, {
@@ -96,12 +96,12 @@ export default class ApiService {
         return response.data;
     }
 
-    static async getAllCategory(){
+    static async getAllCategory() {
         const response = await axios.get(`${this.BASE_URL}/category/get-all`)
         return response.data;
     }
 
-    static async getCategoryById(categoryId){
+    static async getCategoryById(categoryId) {
         const response = await axios.get(`${this.BASE_URL}/category/id/${categoryId}`)
         return response.data;
     }
@@ -123,7 +123,7 @@ export default class ApiService {
 
     // Order Endpoints
     static async createOrder(body) {
-        const response = await axios.post(`${this.BASE_URL}/order/create`, body , {
+        const response = await axios.post(`${this.BASE_URL}/order/create`, body, {
             headers: this.getHeader()
         })
 
@@ -131,7 +131,7 @@ export default class ApiService {
     }
 
     static async getAllOrders() {
-        const response = await axios.get(`${this.BASE_URL}/order/filter` , {
+        const response = await axios.get(`${this.BASE_URL}/order/filter`, {
             headers: this.getHeader()
         })
 
@@ -139,18 +139,18 @@ export default class ApiService {
     }
 
     static async getOrderItemById(itemId) {
-        const response = await axios.get(`${this.BASE_URL}/order/filter` , {
+        const response = await axios.get(`${this.BASE_URL}/order/filter`, {
             headers: this.getHeader(),
-            params: {itemId}
+            params: { itemId }
         })
 
         return response.data;
     }
 
     static async getOrderItemByStatus(status) {
-        const response = await axios.get(`${this.BASE_URL}/order/filter` , {
+        const response = await axios.get(`${this.BASE_URL}/order/filter`, {
             headers: this.getHeader(),
-            params: {status}
+            params: { status }
         })
 
         return response.data;
@@ -159,7 +159,7 @@ export default class ApiService {
 
     // Address Endpoints
     static async saveAddress(body) {
-        const response = await axios.post(`${this.BASE_URL}/address/save`, body , {
+        const response = await axios.post(`${this.BASE_URL}/address/save`, body, {
             headers: this.getHeader()
         })
 

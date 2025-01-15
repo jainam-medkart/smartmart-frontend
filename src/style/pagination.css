@@ -1,0 +1,50 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 7.5rem 0;
+  gap: 10px;
+  /* Consistent spacing between buttons */
+}
+
+.pagination button {
+  background-color: #1a73e8;
+  /* Vibrant blue */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  /* Softer corners */
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button.active {
+  background-color: #004abf;
+  /* Darker blue for the active state */
+  color: #fff;
+  /* Ensure text contrast */
+}
+
+.pagination button:hover {
+  background-color: #002f6c;
+  /* Even darker blue for hover */
+  transform: scale(1.05);
+  /* Subtle scaling effect */
+}
+
+.pagination button:disabled {
+  background-color: #d1d9e6;
+  /* Light blue-gray for disabled state */
+  color: #888;
+  /* Subtle contrast for disabled text */
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pagination button:disabled:hover {
+  background-color: #d1d9e6;
+  /* No hover effect on disabled */
+}

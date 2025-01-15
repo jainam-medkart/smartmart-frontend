@@ -1,0 +1,114 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Light background */
+    color: #333; /* Dark text for readability */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f6f4f3; /* White background */
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0; /* Subtle border for separation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Light shadow */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-logo {
+    height: 40px;
+}
+
+.navbar-title {
+    font-size: 20px;
+    color: #000000; /* Subtle blue color */
+}
+.navbar-search {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d0d0d0; /* Slight border for distinction */
+    border-radius: 20px; /* Rounded corners for a sleek look */
+    overflow: hidden;
+    background-color: #ffffff; /* Distinct white background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    width: 500px;
+}
+
+.navbar-search:hover {
+    border-color: #1c3d5a; /* Dark blue highlight on hover */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+}
+
+.navbar-search input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+    color: #333; /* Ensure good contrast */
+    font-weight: 500;
+}
+
+.navbar-search input::placeholder {
+    color: #999; /* Subtle placeholder color */
+    font-style: italic;
+}
+
+.navbar-search button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #1c3d5a; /* Dark blue button */
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 0 20px 20px 0; /* Match the search bar's rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-search button:hover {
+    background-color: #16304a; /* Slightly darker blue on hover */
+}
+
+.navbar-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar-link a {
+    text-decoration: none;
+    color: #1c3d5a; /* Dark blue links */
+    font-size: 15px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.navbar-link a:hover {
+    color: #0056b3; /* Brighter blue for hover effect */
+}
+
+@media (max-width: 768px) {
+    .navbar-search {
+        width: 100%;
+    }
+
+    .navbar-search input {
+        width: calc(100% - 100px);
+    }
+
+    .navbar-link {
+        font-size: 14px;
+        gap: 10px;
+    }
+}

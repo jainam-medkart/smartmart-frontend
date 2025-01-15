@@ -1,17 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router } from 'react-router-dom';
+import Navbar from './components/common/Navbar';
+import Footer from './components/common/Footer';
+import {ProtectedRoute, AdminRoute} from './service/GuardService.jsx'
+import {CartProvider} from './components/context/CartContext.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-center">Hello world!</h1>
+    <Router>
+      <CartProvider>
+        <Navbar />
 
-    </>
-  )
+        
+
+        <Footer/>
+      </CartProvider>
+    </Router>
+  );
 }
 
-export default App
+export default App;

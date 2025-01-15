@@ -9,6 +9,7 @@ import Footer from './components/common/Footer'
 import Home from './pages/Home.jsx'
 import { ProtectedRoute, AdminRoute } from './service/GuardService.jsx'
 import { CartProvider } from './components/context/CartContext.jsx'
+import ProductDetailsPage from './pages/ProductDetailsPage.jsx'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route path="/product/:productId" element={<ProductDetailsPage />} />
         </Routes>
 
         {/* <Footer /> */}

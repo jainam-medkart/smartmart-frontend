@@ -60,7 +60,7 @@ export default class ApiService {
     }
 
     static async getAllProductsByCategoryId(categoryId) {
-        const response = await axios.get(`${this.BASE_URL}/category/id/${categoryId}`)
+        const response = await axios.get(`${this.BASE_URL}/product/get-by-category-id/${categoryId}`)
         return response.data;
     }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../../style/navbar.css'
 import { NavLink, useNavigate } from 'react-router-dom'
 import ApiService from '../../service/ApiService'
@@ -6,19 +6,34 @@ import Logo from '../../assets/Store.svg'
 
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState('')
+  const [isAdmin, setIsAdmin] = useState(false) // State for isAdmin
   const navigate = useNavigate()
 
-  const isAdmin = ApiService.isAdmin()
   const isAuthenticated = ApiService.isAuthenticated()
+
+  useEffect(() => {
+    // Async call to get isAdmin
+    const checkAdminStatus = async () => {
+      const adminStatus = await ApiService.isAdmin()
+      setIsAdmin(adminStatus)
+    }
+
+    checkAdminStatus()
+  }, [])
 
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value)
   }
 
-  const handleSearchSubmit = async (e) => {
-    e.preventDefault()
-    navigate(`/?search=${searchValue}`)
-  }
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchValue) {
+        navigate(`/?search=${searchValue}`)
+      }
+    }, 300)
+
+    return () => clearTimeout(delayDebounceFn)
+  }, [searchValue, navigate])
 
   const handleLogout = () => {
     const confirm = window.confirm('Are you sure you want to logout?')
@@ -40,7 +55,7 @@ const Navbar = () => {
       </div>
 
       {/* SEARCH FORM */}
-      <form className="navbar-search" onSubmit={handleSearchSubmit}>
+      <form className="navbar-search" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           placeholder="Search products"

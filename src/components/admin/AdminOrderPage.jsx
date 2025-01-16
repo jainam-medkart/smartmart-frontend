@@ -4,7 +4,7 @@ import '../../style/adminOrderPage.css'
 import Pagination from "../common/Pagination";
 import ApiService from "../../service/ApiService";
 
-const OrderStatus = ["PENDING", "CONFIRMED", "SHIPPED", "DELIVERED", "CANCELLED", "RETURNED"];
+const OrderStatus = ["PENDING", "CONFIRMED" , "DELIVERING" , "DELIVERED" , "CANCELLED" , "REFUNDED"];
 
 const AdminOrdersPage = () => {
 

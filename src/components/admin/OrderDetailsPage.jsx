@@ -4,12 +4,7 @@ import "../../style/adminOrderDetails.css";
 import ApiService from "../../service/ApiService";
 
 const ORDER_STATUS = [
-  "Pending",
-  "Confirmed",
-  "Shipped",
-  "Delivered",
-  "Cancelled",
-  "Returned",
+  "PENDING", "CONFIRMED" , "DELIVERING" , "DELIVERED" , "CANCELLED" , "REFUNDED"
 ];
 
 const AdminOrderDetailsPage = () => {

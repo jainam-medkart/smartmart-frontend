@@ -12,7 +12,7 @@ const AddCategory = () => {
     e.preventDefault();
     try {
       const categoryData = { name, image };
-      await ApiService.addCategory(categoryData);
+      await ApiService.createCategory(categoryData);
       setMessage('Category added successfully');
       setName('');
       setImage('');

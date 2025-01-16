@@ -81,7 +81,7 @@ const AddProductPage = () => {
                 {message && <div className="message">{message}</div>}
                 
                 <label htmlFor="image">Image</label>
-                <input type="file" id="image" onChange={handleImage} />
+                <input type="file" id="image" accept=".png, .jpeg, .webp" onChange={handleImage} />
                 
                 <label htmlFor="category">Category</label>
                 <select id="category" value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>

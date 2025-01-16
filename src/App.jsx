@@ -66,6 +66,7 @@ const TransitionWrapper = () => {
             <Route path='/login' element={<LoginPage/>} />
             <Route path='/profile' element={<ProfilePage/>} />
             <Route path='/edit-address' element={<AddressPage/>}/>
+            <Route path='/add-address' element={<ProtectedRoute element={<AddressPage/>} />} />
 
             {/* <Route path='/admin' element={ <AdminPage/>} /> */}
             <Route path='/admin' element={<AdminRoute element={<AdminPage/>} />} />

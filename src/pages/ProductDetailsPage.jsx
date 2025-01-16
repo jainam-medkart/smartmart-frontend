@@ -62,7 +62,7 @@ const ProductDetailsPage = () => {
         <p className="category">Category: {product?.category?.name}</p>
         <p className="quantity">Available: {product?.qty} items</p>
         
-        <p className="size">Size: {product?.productSize} Per Item</p>
+        <p className="size">Package: {product?.productSize}</p>
 
         {cartItem ? (
           <div className="quantity-controls">

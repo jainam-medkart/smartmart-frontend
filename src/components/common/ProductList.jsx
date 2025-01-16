@@ -7,7 +7,11 @@ const ProductList = ({ products }) => {
   const { cart, dispatch } = useCart()
 
   const addToCart = (product) => {
-    dispatch({ type: 'ADD_ITEM', payload: product })
+    if (product.qty > 0) {
+      dispatch({ type: 'ADD_ITEM', payload: product })
+    } else {
+      alert('This product is out of stock and cannot be added to the cart.')
+    }
   }
 
   const incrementItem = (product) => {
@@ -46,7 +50,9 @@ const ProductList = ({ products }) => {
                 <button onClick={() => incrementItem(product)}> + </button>
               </div>
             ) : (
-              <button onClick={() => addToCart(product)}>Add To Cart</button>
+              <button onClick={() => addToCart(product)} disabled={product.qty <= 0}>
+                {product.qty > 0 ? 'Add To Cart' : 'Out of Stock'}
+              </button>
             )}
           </div>
         )

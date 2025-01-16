@@ -1,17 +1,13 @@
 .product-detail {
   max-width: 400px;
-  margin:3rem auto;
+  margin: 8rem auto;
   padding: 20px;
-  border: 1px solid #e0e0e0;
-  /* Light gray border for modern minimal look */
+  border: 1px solid #e0e0e0; /* Light gray border for modern minimal look */
   border-radius: 10px;
-  background-color: #f9fafb;
-  /* Light background for a clean, airy feel */
-  color: #333;
-  /* Dark gray text for good readability */
+  background-color: #f9fafb; /* Light background for a clean, airy feel */
+  color: #333; /* Dark gray text for good readability */
   text-align: center;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow for depth */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .product-detail img {
@@ -24,22 +20,19 @@
 .product-detail h1 {
   font-size: 1.8rem;
   margin-bottom: 10px;
-  color: #333;
-  /* Darker text for the header */
+  color: #333; /* Darker text for the header */
 }
 
 .product-detail p {
   font-size: 1rem;
   margin: 5px 0;
-  color: #555;
-  /* Slightly lighter text for paragraphs */
+  color: #555; /* Slightly lighter text for paragraphs */
 }
 
 .product-detail span {
   display: block;
   font-size: 1.2rem;
-  color: #1c3d5a;
-  /* Dark blue for pricing or important info */
+  color: #1c3d5a; /* Dark blue for pricing or important info */
   margin: 10px 0;
 }
 
@@ -47,8 +40,7 @@
 .product-detail .quantity,
 .product-detail .size {
   font-size: 0.9rem;
-  color: #718093;
-  /* Muted grayish-blue for labels */
+  color: #718093; /* Muted grayish-blue for labels */
 }
 
 .product-detail button {
@@ -58,8 +50,7 @@
   margin-top: 15px;
   border: none;
   border-radius: 5px;
-  background-color: #1c3d5a;
-  /* Dark blue button color */
+  background-color: #1c3d5a; /* Dark blue button color */
   color: #fff;
   font-size: 1rem;
   font-weight: bold;
@@ -68,10 +59,8 @@
 }
 
 .product-detail button:hover {
-  background-color: #004abf;
-  /* Darker blue for hover */
-  transform: scale(1.05);
-  /* Subtle scaling effect for interaction */
+  background-color: #004abf; /* Darker blue for hover */
+  transform: scale(1.05); /* Subtle scaling effect for interaction */
 }
 
 .product-detail .quantity-controls {
@@ -97,6 +86,21 @@
 .quantity-controls span {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #333;
-  /* Darker text for quantity count */
+  color: #333; /* Darker text for quantity count */
+}
+.mrp {
+  color: #ff0000; /* Red color for MRP */
+  font-size: 1.2em; /* Slightly larger font size */
+  font-weight: bold; /* Bold text */
+  margin: 10px 0; /* Margin for spacing */
+  display: block; /* Display as block element */
+  text-decoration: line-through; /* Strikethrough for MRP */
+}
+
+.price {
+  color: #1c3d5a; /* Dark blue color for price */
+  font-size: 1.4em; /* Larger font size for price */
+  font-weight: bold; /* Bold text */
+  margin: 10px 0; /* Margin for spacing */
+  display: block; /* Display as block element */
 }

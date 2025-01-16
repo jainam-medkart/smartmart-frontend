@@ -6,22 +6,23 @@ import {
   useLocation,
 } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import Navbar from './components/common/Navbar'
-import Footer from './components/common/Footer'
-import Home from './pages/Home.jsx'
-import { ProtectedRoute, AdminRoute } from './service/GuardService.jsx'
-import { CartProvider } from './components/context/CartContext.jsx'
-import ProductDetailsPage from './pages/ProductDetailsPage.jsx'
-import CategoryListPage from './pages/CategoryListPage.jsx'
-import './style/transitions.css'
-import CategoryProductsPage from './pages/CategoryProductsPage';
-import CartPage from './pages/CartPage.jsx'
-import RegisterPage from './pages/RegisterPage.jsx'
-import ProfilePage from './pages/ProfilePage.jsx'
-import AddressPage from './pages/AddressPage.jsx'
-import './style/App.css'
-import LoginPage from './pages/LoginPage.jsx'
-import AdminPage from './components/admin/AdminPage.jsx'
+import Navbar from '../common/Navbar.jsx'
+import Home from '../../pages/Home.jsx'
+import { CartProvider } from '../context/CartContext.jsx'
+import ProductDetailsPage from '../../pages/ProductDetailsPage.jsx'
+import CategoryListPage from '../../pages/CategoryListPage.jsx'
+import { ProtectedRoute, AdminRoute } from '../../service/GuardService.jsx'
+import "./../../style/transitions.css"
+// import './style/transitions.css'
+import CartPage from '../../pages/CartPage.jsx'
+import RegisterPage from '../../pages/RegisterPage.jsx'
+import ProfilePage from '../../pages/ProfilePage.jsx'
+import AddressPage from '../../pages/AddressPage.jsx'
+// import './style/App.css'
+import './../../style/App.css'
+import LoginPage from '../../pages/LoginPage.jsx'
+import AdminPage from './AdminPage.jsx'
+
 
 const App = () => {
   return (
@@ -60,7 +61,7 @@ const TransitionWrapper = () => {
             <Route path='/edit-address' element={<AddressPage/>}/>
 
             <Route path='/admin' element={<AdminPage/>} />
-            
+            <Route path='/admin/categories' element={<AdminRoute><AdminCategoryPage/></AdminRoute>} />
           </Routes>
         </div>
       </CSSTransition>

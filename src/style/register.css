@@ -1,0 +1,96 @@
+.register-page {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1c2c4d;  /* Lighter dark color */
+    border-radius: 10px;
+    color: #f0f0f0;  /* Lighter text color */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    width: 90%;
+}
+
+.register-page h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #f0f0f0;
+}
+
+.register-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.register-page label {
+    font-size: 1rem;
+    color: #b4b4b4;  /* Lighter text for labels */
+}
+
+.register-page input {
+    padding: 12px;
+    border: 1px solid #2a3d5f;  /* Lighter border */
+    border-radius: 5px;
+    background-color: #2f3e5d;  /* Lighter background color */
+    color: #f0f0f0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.register-page input:focus {
+    border-color: #5e81d5;  /* Accent color for focus */
+}
+
+.register-page button {
+    padding: 14px;
+    background-color: #5e81d5;  /* Accent button color */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-page button:hover {
+    background-color: #4a6da3;  /* Darker shade for hover */
+}
+
+.message {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #a1e0a0;  /* Green message color */
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1rem;
+    color: #b4b4b4;
+}
+
+.register-link a {
+    color: #5e81d5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: #4a6da3;
+}
+
+.error {
+    color: #ff4d4d;  /* Red color for error messages */
+    font-size: 0.9rem;
+    margin-top: 5px;
+}

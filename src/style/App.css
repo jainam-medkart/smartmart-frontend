@@ -1,0 +1,25 @@
+.route-section {
+    overflow: hidden;
+  }
+  
+  .fade-enter {
+    opacity: 0;
+    overflow: hidden;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+    overflow: hidden;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+    overflow: hidden;
+  }
+  
+  .fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+    overflow: hidden;
+  }

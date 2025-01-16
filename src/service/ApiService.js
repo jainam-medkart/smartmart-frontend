@@ -14,17 +14,17 @@ export default class ApiService {
 
     // Auth and User Related Endpoints
     static async registerUser(registrationdetails) {
-        const response = await axios.post(`${this.BASE_URL / auth / register}`, registrationdetails)
+        const response = await axios.post(`${this.BASE_URL}/auth/register`, registrationdetails)
         return response.data;
     }
 
     static async loginUser(logindetails) {
-        const response = await axios.post(`${this.BASE_URL / auth / login}`, logindetails)
+        const response = await axios.post(`${this.BASE_URL}/auth/login`, logindetails)
         return response.data;
     }
 
     static async getLoggedInUserInfo() {
-        const response = await axios.get(`${this.BASE_URL / user / my - info}`, {
+        const response = await axios.get(`${this.BASE_URL}/user/my-info`, {
             headers: this.getHeader()
         })
         return response.data;
@@ -33,7 +33,7 @@ export default class ApiService {
 
     // Product Endpoints
     static async addProduct(formData) {
-        const response = await axios.post(`${this.BASE_URL / product / create}`, formData, {
+        const response = await axios.post(`${this.BASE_URL}/product/create`, formData, {
             headers: this.getHeader()
         })
         return response.data;
@@ -179,13 +179,13 @@ export default class ApiService {
 
     static async isAdmin() {
 
-        // const response = await axios.get(`${this.BASE_URL}/user/my-info`, {
-        //     headers: this.getHeader()
-        // });
-        // return response.data.user.role === "ADMIN";
+        const response = await axios.get(`${this.BASE_URL}/user/my-info`, {
+            headers: this.getHeader()
+        });
+        return response.data.user.role === "ADMIN";
 
-        const role = localStorage.getItem('role')
-        return role == 'ADMIN'
+        // const role = localStorage.getItem('role')
+        // return role == 'ADMIN'
     }
 
 

@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f6f4f3; /* White background */
+    background-color: #f3f4f6; /* White background */
     padding: 10px 20px;
     border-bottom: 1px solid #e0e0e0; /* Subtle border for separation */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Light shadow */

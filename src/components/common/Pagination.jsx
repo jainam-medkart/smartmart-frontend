@@ -1,24 +1,100 @@
-import React from 'react'
-import '../../style/pagination.css'
+import React, { useState } from 'react';
+import '../../style/pagination.css';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const pageNumbers = []
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i)
-  }
+  const [searchPage, setSearchPage] = useState(currentPage);
+
+  // Handle input change for the page search
+  const handlePageSearch = (e) => {
+    const pageNumber = Number(e.target.value);
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setSearchPage(pageNumber);
+    } else {
+      setSearchPage('');
+    }
+  };
+
+  // Go to the page directly based on search value
+  const goToPage = () => {
+    if (searchPage >= 1 && searchPage <= totalPages) {
+      onPageChange(searchPage);
+    }
+  };
+
+  // Handle keypress for "Enter" key
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      goToPage();
+    }
+  };
+
+  // Get the pages to be displayed in the pagination
+  const getVisiblePages = () => {
+    const visiblePages = [];
+    let startPage = currentPage - 2;
+    let endPage = currentPage + 2;
+
+    if (startPage < 1) {
+      startPage = 1;
+      endPage = Math.min(totalPages, 5);
+    }
+
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, totalPages - 4);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      visiblePages.push(i);
+    }
+
+    return visiblePages;
+  };
+
+  const visiblePages = getVisiblePages();
 
   return (
-    <div className="pagination">
-      {pageNumbers.map((number) => (
+    <div className="pagination-container">
+      <div className="pagination">
         <button
-          key={number}
-          onClick={() => onPageChange(number)}
-          className={number === currentPage ? 'active' : ''}
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
         >
-          {number}
+          -
         </button>
-      ))}
+        {visiblePages.map((number) => (
+          <button
+            key={number}
+            onClick={() => onPageChange(number)}
+            className={number === currentPage ? 'active' : ''}
+          >
+            {number}
+          </button>
+        ))}
+        <button
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          +
+        </button>
+      </div>
+      <div className="pagination-info-search">
+        <div className="pagination-info">
+          Page {currentPage} of {totalPages}
+        </div>
+        <div className="page-search">
+          <input
+            type="number"
+            value={searchPage}
+            onChange={handlePageSearch}
+            onKeyPress={handleKeyPress}
+            // placeholder="Go to page"
+          />
+          <button onClick={goToPage}>Go</button>
+        </div>
+      </div>
     </div>
-  )
-}
-export default Pagination
+  );
+};
+
+export default Pagination;

@@ -1,0 +1,44 @@
+/* adminPage.css */
+
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+    padding: 30px;
+    /* background-color: #1a1a1a;  Dark background */
+    color: #ffffff;  /* Light text color */
+    border-radius: 8px;
+    gap: 20px;
+}
+
+.admin-page h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #003366; 
+}
+
+.admin-page button {
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    background-color: #003366;  /* Dark blue */
+    color: #ffffff;
+    width: 50%;  /* Adjust width to match your theme */
+    transition: background-color 0.3s ease;
+}
+
+.admin-page button:hover {
+    background-color: #005599;  /* Lighter blue on hover */
+}
+
+@media (max-width: 768px) {
+    .admin-page button {
+        width: 80%;  /* Responsive button width */
+    }
+}

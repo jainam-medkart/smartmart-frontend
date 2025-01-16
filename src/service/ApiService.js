@@ -188,6 +188,29 @@ export default class ApiService {
         // return role == 'ADMIN'
     }
 
+    // Add the function to ApiService
+    static async uploadToCloudinary(file) {
+        try {
+            const formData = new FormData();
+            formData.append("file", file); // The image file
+            formData.append("upload_preset", "mentorOne"); // Replace with your upload preset from Cloudinary
+            formData.append("cloud_name", "domwwopwt"); // Replace with your Cloudinary cloud name
+            
+            const response = await axios.post(
+                `https://api.cloudinary.com/v1_1/domwwopwt/image/upload`, // Replace 'your_cloud_name'
+                formData
+            );
+
+            // The response will contain the URL of the uploaded image
+            return response.data.secure_url;
+        } catch (error) {
+            throw new Error(
+                error.response?.data?.message || error.message || "Failed to upload image to Cloudinary"
+            );
+        }
+    }
+
+
 
 
 }

@@ -22,6 +22,8 @@ import AddressPage from './pages/AddressPage.jsx'
 import './style/App.css'
 import LoginPage from './pages/LoginPage.jsx'
 import AdminPage from './components/admin/AdminPage.jsx'
+import AdminCategoryPage from './components/admin/AdminCategoryPage.jsx'
+import AddCategory from './components/admin/AddCategory.jsx'
 
 const App = () => {
   return (
@@ -59,7 +61,10 @@ const TransitionWrapper = () => {
             <Route path='/profile' element={<ProfilePage/>} />
             <Route path='/edit-address' element={<AddressPage/>}/>
 
-            <Route path='/admin' element={<AdminPage/>} />
+            {/* <Route path='/admin' element={ <AdminPage/>} /> */}
+            <Route path='/admin' element={<AdminRoute element={<AdminPage/>} />} />
+            <Route path='/admin/categories' element={<AdminRoute element={<AdminCategoryPage/>} />} />
+            <Route path='/admin/add-category' element={<AdminRoute element={<AddCategory/>} />} />
             
           </Routes>
         </div>

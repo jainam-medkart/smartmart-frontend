@@ -1,50 +1,124 @@
+/* adminCategory.css */
+
 .admin-category-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+    padding: 30px;
+    background-color: #f9f9f9; /* Light background for the page */
+    color: #003366; /* Dark blue text for accents */
+    border-radius: 8px;
+    gap: 20px;
+  }
+  
+  .admin-category-list {
+    width: 100%;
     max-width: 800px;
-    margin: 0 auto 50px auto;
-}
-.admin-category-list{
-    border-radius: 5px;
-    padding: 20px;
-}
-
-.admin-category-list h2{
-    font-size: 25px;
+  }
+  
+  .admin-category-list h2 {
+    font-size: 36px;
+    font-weight: 700;
     margin-bottom: 20px;
-}
-.admin-category-list button{
-    background-color: #f68b1e;
-    color: #fff;
-    font-size: 20px;
-    border: none;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-.admin-category-list button:hover{
-    background-color: #a25d19;
-}
-
-.admin-category-list ul li{
+    color: #003366; /* Dark blue accent */
+  }
+  
+  .parent-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 10px 10px 15px;
-    margin-bottom: 1.5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-.admin-category-list ul li span{
-    color: #444;
-}
-
-.admin-bt button{
-    background-color: tomato;
-    color: #fff;
-    border: 8px 16px;
+    padding-bottom: 25px;
+  }
+  
+  .add-category-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    background-color: #003366; /* Dark blue accent */
+    color: #ffffff;
     cursor: pointer;
-    margin-left: 10px;
-}
-.admin-bt .admin-btn-edit{
-    background-color: #f68b1e;
-}
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-category-btn:hover {
+    background-color: #005599; /* Lighter blue on hover */
+  }
+  
+  .admin-category-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* White background for list items */
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #003366; /* Dark blue text */
+    border: 1px solid #003366; /* Dark blue border */
+  }
+  
+  .category-number {
+    font-weight: 700;
+    color: #003366;
+    margin-right: 10px;
+  }
+  
+  .admin-category-list li span {
+    flex: 1;
+  }
+  
+  .admin-bt {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .admin-btn-edit,
+  .admin-btn-delete {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-btn-edit {
+    background-color: #003366; /* Dark blue accent for edit button */
+    color: #ffffff;
+  }
+  
+  .admin-btn-edit:hover {
+    background-color: #005599; /* Lighter blue on hover */
+  }
+  
+  .admin-btn-delete {
+    background-color: #cc0000; /* Red for delete */
+    color: #ffffff;
+  }
+  
+  .admin-btn-delete:hover {
+    background-color: #ff4d4d; /* Lighter red on hover */
+  }
+  
+  @media (max-width: 768px) {
+    .admin-category-list button {
+      width: 80%; /* Responsive button width */
+    }
+    .category-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .admin-bt {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  

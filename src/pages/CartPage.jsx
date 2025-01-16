@@ -27,19 +27,54 @@ const CartPage = () => {
     0
   );
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
+    if (!ApiService.isAuthenticated()) {
+      setMessage("You need to login first before you can place an order");
+      setTimeout(() => {
+        setMessage('');
+        navigate("/login");
+      }, 3000);
+      return;
+    }
+
     if (cart.length === 0) {
       setMessage('Your cart is empty. Add items before checkout.');
       return;
     }
 
-    if (!ApiService.isAuthenticated()) {
-      console.log('User is not authenticated');
-      navigate('/login'); // Redirect to login if the user is not authenticated
+    if (totalPrice < 500) {
+      setMessage('The total value of your cart must be at least 500 to proceed to checkout.');
       return;
     }
 
-    navigate('/checkout');
+    const orderItems = cart.map(item => ({
+      productId: item.id,
+      quantity: item.quantity
+    }));
+
+    const orderRequest = {
+      totalPrice,
+      items: orderItems,
+    };
+
+    try {
+      const response = await ApiService.createOrder(orderRequest);
+      setMessage(response.message);
+
+      setTimeout(() => {
+        setMessage('');
+      }, 5000);
+
+      if (response.status === 200) {
+        dispatch({ type: 'CLEAR_CART' });
+      }
+
+    } catch (error) {
+      setMessage(error.response?.data?.message || error.message || 'Failed to place an order');
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
+    }
   };
 
   return (
@@ -85,6 +120,7 @@ const CartPage = () => {
         </div>
         <div className="cart-summary">
           <h2>Order Summary</h2>
+          <h4 className=''>Min order value is 500</h4>
           <div className="total-price">Total: ${totalPrice.toFixed(2)}</div>
           <button className="checkout-button" onClick={handleCheckout}>
             Proceed to Checkout

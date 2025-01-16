@@ -1,0 +1,75 @@
+.product-container {
+    /* background-color: #dadde2; Dark blue */
+    padding: 60px 30px;
+    margin-top: 60px;
+    border-radius: 8px;
+    width: 60%;
+    margin: auto;
+}
+
+.product-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.product-form h2 {
+    color: #1f1d1d; /* Light text */
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.product-form label {
+    color: #1f1d1d;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.product-form input,
+.product-form select,
+.product-form textarea,
+.product-form button {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.product-form input,
+.product-form select,
+.product-form textarea {
+    background-color: #ffffff; /* White background for inputs */
+    color: #003366; /* Dark blue text */
+}
+
+.product-form button {
+    background-color: #003366; /* Dark blue */
+    color: #ffffff; /* White text */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-form button:hover {
+    background-color: #005599; /* Lighter blue */
+}
+
+.product-form .message {
+    color: #f68b1e;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.product-form input[type="file"] {
+    color: #ffffff;
+}
+
+.product-form img {
+    max-width: 100px;
+    margin: 10px 0;
+}

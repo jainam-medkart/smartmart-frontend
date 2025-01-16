@@ -48,7 +48,7 @@ const AddCategory = () => {
         />
         <input
           type="file"
-          accept="image/*"
+          accept=".png, .jpeg, .webp"
           onChange={handleImageUpload}
         />
         <button type="submit">Add</button>

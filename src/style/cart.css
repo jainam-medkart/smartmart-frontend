@@ -1,8 +1,6 @@
-/* cart.css */
-
 .cart-page-container {
   display: flex;
-  justify-content: flex-start; /* Align to left, no center */
+  justify-content: center; /* Center the cart page container */
   align-items: flex-start;
   padding-top: 50px; /* Top margin for the whole cart */
   background-color: #f8f8f8; /* Light background */
@@ -34,6 +32,46 @@
   border-radius: 10px;
   background-color: #ffffff;
   margin-left: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.cart-summary h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.cart-summary h4 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #888;
+}
+
+.cart-summary .total-price {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+.cart-summary .checkout-button {
+  display: block;
+  background-color: #003366; /* Dark blue button color */
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.cart-summary .checkout-button:hover {
+  background-color: #005599; /* Lighter blue on hover */
 }
 
 .cart-page h1 {
@@ -97,41 +135,24 @@
   background-color: #333333;
 }
 
-.cart-summary h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.cart-summary .total-price {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-.cart-summary .checkout-button {
-  display: block;
-  background-color: #000000;
-  color: white;
-  padding: 10px 20px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-
-.cart-summary .checkout-button:hover {
-  background-color: #333333;
-}
-
 @media (max-width: 768px) {
   .cart-page {
     flex-direction: column;
+    padding: 20px;
   }
 
   .cart-summary {
     margin-top: 20px;
+  }
+
+  .cart-summary h2,
+  .cart-summary .total-price,
+  .cart-summary .checkout-button {
+    font-size: 1.2rem; /* Make font size slightly smaller on smaller screens */
+  }
+
+  .cart-summary h4 {
+    font-size: 1rem;
+    margin-bottom: 10px;
   }
 }

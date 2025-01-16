@@ -30,21 +30,55 @@ export default class ApiService {
         return response.data;
     }
 
-
     // Product Endpoints
     static async addProduct(formData) {
-        const response = await axios.post(`${this.BASE_URL}/product/create`, formData, {
-            headers: this.getHeader()
-        })
-        return response.data;
+        try {
+            // Construct the query parameters from formData
+            const params = new URLSearchParams();
+            formData.forEach((value, key) => {
+                params.append(key, value);
+            });
+
+            const response = await axios.post(`${this.BASE_URL}/product/create?${params.toString()}`, null, {
+                headers: this.getHeader() // Correctly set headers
+            });
+            console.log(`${this.BASE_URL}/product/create?${params.toString()}`)
+
+            return response.data;
+        } catch (error) {
+            console.error('Error adding product:', error);
+            throw error;
+        }
     }
 
-    static async updateProduct(productId, formData) {
-        const response = await axios.put(`${this.BASE_URL}/product/update/${productId}`, formData, {
-            headers: this.getHeader()
-        })
+    // static async updateProduct(formData) {
+    //     const response = await axios.put(`${this.BASE_URL}/product/update`, formData, {
+    //         headers: this.getHeader()
+    //     })
 
-        return response.data;
+    //     return response.data;
+    // }
+
+    static async updateProduct(productId, formData) {
+        try {
+            // Construct the query parameters from formData, removing null or empty values
+            const params = new URLSearchParams();
+            formData.forEach((value, key) => {
+                if (value !== null && value !== '') {
+                    params.append(key, value);
+                }
+            });
+    
+            const response = await axios.put(`${this.BASE_URL}/product/update?productId=${productId}&${params.toString()}`, null, {
+                headers: this.getHeader() // Correctly set headers
+            });
+            console.log(`${this.BASE_URL}/product/update?productId=${productId}&${params.toString()}`);
+    
+            return response.data;
+        } catch (error) {
+            console.error('Error updating product:', error);
+            throw error;
+        }
     }
 
     static async getAllProducts() {
@@ -69,26 +103,39 @@ export default class ApiService {
         return response.data;
     }
 
+    // static async deleteProductById(productId) {
+    //     const formData = new FormData();
+    //     formData.append('quantity', 0);
+
+    //     const response = await this.updateProduct(productId, formData);
+
+    //     return response;
+    // }
+
     static async deleteProductById(productId) {
-        const response = await axios.delete(`${this.BASE_URL}/product/delete/${productId}`,
-            {
-                headers: this.getHeader()
-            }
-        )
+        const response = await axios.delete(`${this.BASE_URL}/product/delete/${productId}`, {
+            headers: this.getHeader()
+        });
         return response.data;
     }
 
     static async updateOrderItemStatus(orderItemId, status) {
-        const response = await axios.put(`${this.BASE_URL}/order/update-item-status/${orderItemId}`, {
-            header: this.getHeader(),
-            params: { status }
-        })
-
-        return response.data;
+        try {
+            const response = await axios.put(`${this.BASE_URL}/order/update-item-status/${orderItemId}`, null, {
+                headers: this.getHeader(),
+                params: { status }
+            });
+    
+            console.log(response.data);
+    
+            return response.data;
+        } catch (error) {
+            console.error('Error updating order item status:', error);
+            throw error;
+        }
     }
 
-
-    // Product Endpoints
+    // Category Endpoints
     static async createCategory(body) {
         const response = await axios.post(`${this.BASE_URL}/category/create`, body, {
             headers: this.getHeader()
@@ -123,11 +170,15 @@ export default class ApiService {
 
     // Order Endpoints
     static async createOrder(body) {
-        const response = await axios.post(`${this.BASE_URL}/order/create`, body, {
-            headers: this.getHeader()
-        })
-
-        return response.data;
+        try {
+            const response = await axios.put(`${this.BASE_URL}/order/place`, body, {
+                headers: this.getHeader()
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error creating order:', error);
+            throw error;
+        }
     }
 
     static async getAllOrders() {
@@ -156,7 +207,6 @@ export default class ApiService {
         return response.data;
     }
 
-
     // Address Endpoints
     static async saveAddress(body) {
         const response = await axios.post(`${this.BASE_URL}/address/save`, body, {
@@ -178,14 +228,10 @@ export default class ApiService {
     }
 
     static async isAdmin() {
-
         const response = await axios.get(`${this.BASE_URL}/user/my-info`, {
             headers: this.getHeader()
         });
         return response.data.user.role === "ADMIN";
-
-        // const role = localStorage.getItem('role')
-        // return role == 'ADMIN'
     }
 
     // Add the function to ApiService
@@ -209,8 +255,4 @@ export default class ApiService {
             );
         }
     }
-
-
-
-
 }

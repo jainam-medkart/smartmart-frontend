@@ -1,0 +1,84 @@
+.admin-product-list{
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    font-size: 16px;
+}
+.product-btn{
+    border-radius: 5px;
+    margin: 5px 0px;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    background-color: #003366;
+}
+
+.product-btn-delete{
+    border-radius: 5px;
+    margin: 5px 0px;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    background-color: #003366;
+
+}
+.admin-product-list button:hover{
+    background-color: #205ca6;
+}
+.admin-product-list ul{
+    list-style-type: none;
+    padding: 0;
+}
+.admin-product-list li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 10px 15px;
+    margin-bottom: 1.5px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin:1rem;
+
+}
+.admin-product-list span{
+    flex: 1;
+    color: #444;
+}
+.admin-product-list button{
+    margin-left: 10px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0; /* Adjust padding to ensure proper alignment */
+    margin-bottom: 25px; /* Add margin to separate from the content below */
+    padding-left: 30px;
+}
+
+.product-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    background-color: #003366; /* Dark blue accent */
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-btn:hover {
+    background-color: #002244; /* Darker blue on hover */
+}
+
+.admin-product-list {
+    margin-top: 20px;;
+}

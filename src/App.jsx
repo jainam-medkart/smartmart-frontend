@@ -24,6 +24,12 @@ import LoginPage from './pages/LoginPage.jsx'
 import AdminPage from './components/admin/AdminPage.jsx'
 import AdminCategoryPage from './components/admin/AdminCategoryPage.jsx'
 import AddCategory from './components/admin/AddCategory.jsx'
+import EditCategory from './components/admin/EditCategory.jsx'
+import AdminProductPage from './components/admin/AdminProductPage.jsx'
+import AddProductPage from './components/admin/AddProductPage.jsx'
+import EditProductPage from './components/admin/EditProductPage.jsx'
+import AdminOrdersPage from './components/admin/AdminOrderPage.jsx'
+import AdminOrderDetailsPage from './components/admin/OrderDetailsPage.jsx'
 
 const App = () => {
   return (
@@ -65,7 +71,12 @@ const TransitionWrapper = () => {
             <Route path='/admin' element={<AdminRoute element={<AdminPage/>} />} />
             <Route path='/admin/categories' element={<AdminRoute element={<AdminCategoryPage/>} />} />
             <Route path='/admin/add-category' element={<AdminRoute element={<AddCategory/>} />} />
-            
+            <Route path='/admin/edit-category/:categoryId' element={<AdminRoute element={<EditCategory/>} />} />
+            <Route path='/admin/products' element={<AdminRoute element={<AdminProductPage/>} />} />
+            <Route path='/admin/add-product' element={<AdminRoute element={<AddProductPage/>} />} />
+            <Route path='/admin/edit-product/:productId' element={<AdminRoute element={<EditProductPage/>} />} />
+            <Route path='/admin/orders' element={<AdminRoute element={<AdminOrdersPage/>} />} />
+            <Route path='/admin/order-details/:itemId' element={<AdminRoute element={<AdminOrderDetailsPage/>} />} />
           </Routes>
         </div>
       </CSSTransition>

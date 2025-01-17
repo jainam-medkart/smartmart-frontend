@@ -295,10 +295,26 @@ export default class ApiService {
             const response = await axios.get(`${this.BASE_URL}/product/${productId}/images`, {
                 headers: this.getHeader()
             })
-    
             return response.data;
         } catch {
+            console.log("Can't fetch extra images")
+        }
+    }
 
+    static async setExtraImages(productId, newImages) {
+        try {
+            const payload = {
+                imageUrls: newImages
+            };
+            const response = await axios.post(`${this.BASE_URL}/product/${productId}/add-images`, JSON.stringify(payload), {
+                headers: {
+                    ...this.getHeader(),
+                    'Content-Type': 'application/json'
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log("Can't set extra images", error);
         }
     }
 }

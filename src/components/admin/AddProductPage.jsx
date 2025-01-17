@@ -15,6 +15,7 @@ const AddProductPage = () => {
   const [productSize, setProductSize] = useState('');
   const [qty, setQty] = useState('');
   const [tags, setTags] = useState([]); // To hold tags
+  const [otherImages, setOtherImages] = useState([]); // To hold other images
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,6 +32,24 @@ const AddProductPage = () => {
       } catch (error) {
         setMessage(error.message || 'Failed to upload image');
       }
+    }
+  };
+
+  const handleOtherImages = async (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length + otherImages.length > 5) {
+      setMessage('You can only upload up to 5 images');
+      return;
+    }
+
+    try {
+      const uploadedImages = await Promise.all(
+        files.map((file) => ApiService.uploadToCloudinary(file))
+      );
+      setOtherImages([...otherImages, ...uploadedImages]);
+      setMessage('Other images uploaded successfully');
+    } catch (error) {
+      setMessage(error.message || 'Failed to upload other images');
     }
   };
 
@@ -90,6 +109,9 @@ const AddProductPage = () => {
       const response = await ApiService.addProduct2(productData);
 
       if (response.status === 200) {
+        // Call the addImages API with the other images
+        await ApiService.setExtraImages(response.productId, otherImages);
+
         setMessage(response.message || 'Product added successfully');
         setTimeout(() => {
           setMessage('');
@@ -202,6 +224,27 @@ const AddProductPage = () => {
                   x
                 </button>
               </span>
+            ))}
+          </div>
+        )}
+
+        <label htmlFor="otherImages">Other Images (up to 5)</label>
+        <input
+          type="file"
+          id="otherImages"
+          accept=".png, .jpeg, .webp"
+          multiple
+          onChange={handleOtherImages}
+        />
+        {otherImages.length > 0 && (
+          <div className="other-images-list">
+            {otherImages.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Other image ${index + 1}`}
+                style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+              />
             ))}
           </div>
         )}

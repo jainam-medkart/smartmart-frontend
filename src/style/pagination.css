@@ -53,75 +53,17 @@
 .page-search button:hover {
   background-color: #004abf;
 }
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
 
 .pagination-info {
   margin-left: 10px;
   font-size: 1rem;
   color: #555;
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .pagination-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.pagination-info {
-  font-size: 1rem;
-  color: #555;
-}
-
-.page-search {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.page-search input {
-  padding: 5px;
-  font-size: 1rem;
-}
-
-.page-search button {
-  background-color: #1c3d5a;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  border: none;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.page-search button:hover {
-  background-color: #004abf;
-}
-
-.pagination-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.pagination {
-  display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -131,11 +73,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.pagination-info {
-  font-size: 1rem;
-  color: #555;
 }
 
 .page-search {

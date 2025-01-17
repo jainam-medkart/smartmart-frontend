@@ -98,6 +98,8 @@ export default class ApiService {
 
     static async updateProducttg(productId, formData) {
         try {
+            formData.append('imageUrl', formData.get('image'));
+
             const response = await axios.put(
                 `${this.BASE_URL}/product/updatetg?productId=${productId}`,
                 formData,

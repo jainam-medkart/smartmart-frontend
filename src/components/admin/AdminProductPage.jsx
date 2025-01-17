@@ -59,7 +59,7 @@ const AdminProductPage = () => {
                     <li key={product.id}>
                         <span>{product.name}</span>
                         <button className="product-btn" onClick={() => handleEdit(product.id)}>Edit</button>
-                        <button className="product-btn-delete" onClick={() => handleDelete(product.id)}>Delete</button>
+                        {/* <button className="product-btn-delete" onClick={() => handleDelete(product.id)}>Delete</button> */}
                     </li>
                 ))}
             </ul>

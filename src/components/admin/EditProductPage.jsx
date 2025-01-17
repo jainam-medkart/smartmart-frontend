@@ -60,6 +60,7 @@ const EditProductPage = () => {
       try {
         const imageUrl = await ApiService.uploadToCloudinary(file)
         setImage(imageUrl)
+        console.log("Updated image")
         setMessage('Image uploaded successfully')
       } catch (error) {
         setMessage(error.message || 'Failed to upload image')

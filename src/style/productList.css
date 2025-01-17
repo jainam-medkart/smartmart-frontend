@@ -20,6 +20,13 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 250px;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Ensure vertical stacking */
+  justify-content: space-between;
+  /* Space for elements */
+  box-sizing: border-box;
+  /* Include padding and borders */
 }
 
 .product-item:hover {
@@ -67,8 +74,10 @@
   color: #fff;
   cursor: pointer;
   font-size: 1em;
-  margin: 10px 0;
+  margin: 10px auto;
   padding: 10px 20px;
+  width: 90%;
+  /* Fit within the card */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -89,8 +98,13 @@
 .quantity-controls {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 10px 0;
+  justify-content: space-around;
+  /* Proper spacing between controls */
+  margin: 10px auto;
+  width: 90%;
+  /* Ensure it fits within the card */
+  box-sizing: border-box;
+  /* Includes padding */
 }
 
 .quantity-controls button {

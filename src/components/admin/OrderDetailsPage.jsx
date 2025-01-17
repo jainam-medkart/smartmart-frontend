@@ -1,48 +1,58 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import "../../style/adminOrderDetails.css";
-import ApiService from "../../service/ApiService";
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import '../../style/adminOrderDetails.css'
+import ApiService from '../../service/ApiService'
 
 const ORDER_STATUS = [
-  "PENDING", "CONFIRMED" , "DELIVERING" , "DELIVERED" , "CANCELLED" , "REFUNDED"
-];
+  'PENDING',
+  'CONFIRMED',
+  'DELIVERING',
+  'DELIVERED',
+  'CANCELLED',
+  'REFUNDED',
+]
 
 const AdminOrderDetailsPage = () => {
-  const { itemId } = useParams();
-  const [orderItems, setOrderItems] = useState([]);
-  const [message, setMessage] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState({});
+  const { itemId } = useParams()
+  const [orderItems, setOrderItems] = useState([])
+  const [message, setMessage] = useState('')
+  const [selectedStatus, setSelectedStatus] = useState({})
 
   useEffect(() => {
-    fetchOrderDetails(itemId);
-  }, [itemId]);
+    fetchOrderDetails(itemId)
+  }, [itemId])
 
   const fetchOrderDetails = async (itemId) => {
     try {
-      const response = await ApiService.getOrderItemById(itemId);
-      setOrderItems(response.orderItemList);
+      const response = await ApiService.getOrderItemById(itemId)
+      setOrderItems(response.orderItemList)
     } catch (error) {
-      console.log(error.message || error);
+      console.log(error.message || error)
     }
-  };
+  }
 
   const handleStatusChange = (orderItemId, newStatus) => {
-    setSelectedStatus({ ...selectedStatus, [orderItemId]: newStatus });
-  };
+    setSelectedStatus({ ...selectedStatus, [orderItemId]: newStatus })
+  }
 
   const handleSubmitStatusChange = async (orderItemId) => {
     try {
-      await ApiService.updateOrderItemStatus(orderItemId, selectedStatus[orderItemId]);
-      setMessage("Order item status was successfully updated");
+      await ApiService.updateOrderItemStatus(
+        orderItemId,
+        selectedStatus[orderItemId]
+      )
+      setMessage('Order item status was successfully updated')
       setTimeout(() => {
-        setMessage("");
-      }, 3000);
+        setMessage('')
+      }, 3000)
     } catch (error) {
       setMessage(
-        error.response?.data?.message || error.message || "Unable to update order item status"
-      );
+        error.response?.data?.message ||
+          error.message ||
+          'Unable to update order item status'
+      )
     }
-  };
+  }
 
   return (
     <div className="order-details-page">
@@ -106,7 +116,9 @@ const AdminOrderDetailsPage = () => {
                   <select
                     className="status-option"
                     value={selectedStatus[orderItem.id] || orderItem.status}
-                    onChange={(e) => handleStatusChange(orderItem.id, e.target.value)}
+                    onChange={(e) =>
+                      handleStatusChange(orderItem.id, e.target.value)
+                    }
                   >
                     {ORDER_STATUS.map((status) => (
                       <option key={status} value={status}>
@@ -165,7 +177,7 @@ const AdminOrderDetailsPage = () => {
               </div>
               <div className="info-field">
                 <strong>Zip Code:</strong>
-                <p>{orderItem.user.address?.zipcode}</p>
+                <p>{orderItem.user.address?.zipCode}</p>
               </div>
             </div>
           </div>
@@ -174,7 +186,7 @@ const AdminOrderDetailsPage = () => {
         <p>Loading order details...</p>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default AdminOrderDetailsPage;
+export default AdminOrderDetailsPage

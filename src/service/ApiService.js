@@ -51,6 +51,21 @@ export default class ApiService {
         }
     }
 
+    static async addProduct2(productData) {
+        try {
+            console.log(productData)
+            const response = await axios.post(`${this.BASE_URL}/product/createtg`, productData, {
+                headers: this.getHeader() // Correctly set headers
+            });
+            console.log(`${this.BASE_URL}/product/create`, productData);
+
+            return response.data;
+        } catch (error) {
+            console.error('Error adding product:', error);
+            throw error;
+        }
+    }
+
     // static async updateProduct(formData) {
     //     const response = await axios.put(`${this.BASE_URL}/product/update`, formData, {
     //         headers: this.getHeader()
@@ -68,18 +83,37 @@ export default class ApiService {
                     params.append(key, value);
                 }
             });
-    
+
             const response = await axios.put(`${this.BASE_URL}/product/update?productId=${productId}&${params.toString()}`, null, {
                 headers: this.getHeader() // Correctly set headers
             });
             console.log(`${this.BASE_URL}/product/update?productId=${productId}&${params.toString()}`);
-    
+
             return response.data;
         } catch (error) {
             console.error('Error updating product:', error);
             throw error;
         }
     }
+
+    static async updateProducttg(productId, formData) {
+        try {
+            const response = await axios.put(
+                `${this.BASE_URL}/product/updatetg?productId=${productId}`,
+                formData,
+                {
+                    headers: this.getHeader() // Correctly set headers
+                }
+            );
+            console.log(`${this.BASE_URL}/product/update?productId=${productId}`);
+
+            return response.data;
+        } catch (error) {
+            console.error('Error updating product:', error);
+            throw error;
+        }
+    }
+
 
     static async getAllProducts() {
         const response = await axios.get(`${this.BASE_URL}/product/get-all`)
@@ -125,9 +159,9 @@ export default class ApiService {
                 headers: this.getHeader(),
                 params: { status }
             });
-    
+
             console.log(response.data);
-    
+
             return response.data;
         } catch (error) {
             console.error('Error updating order item status:', error);
@@ -241,7 +275,7 @@ export default class ApiService {
             formData.append("file", file); // The image file
             formData.append("upload_preset", "mentorOne"); // Replace with your upload preset from Cloudinary
             formData.append("cloud_name", "domwwopwt"); // Replace with your Cloudinary cloud name
-            
+
             const response = await axios.post(
                 `https://api.cloudinary.com/v1_1/domwwopwt/image/upload`, // Replace 'your_cloud_name'
                 formData
@@ -253,6 +287,18 @@ export default class ApiService {
             throw new Error(
                 error.response?.data?.message || error.message || "Failed to upload image to Cloudinary"
             );
+        }
+    }
+
+    static async fetchAllImagesFromProductId(productId) {
+        try {
+            const response = await axios.get(`${this.BASE_URL}/product/${productId}/images`, {
+                headers: this.getHeader()
+            })
+    
+            return response.data;
+        } catch {
+
         }
     }
 }

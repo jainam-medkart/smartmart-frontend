@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../../style/navbar.css'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import ApiService from '../../service/ApiService'
 import Logo from '../../assets/Store.svg'
 
@@ -8,6 +8,7 @@ const Navbar = () => {
   const [searchValue, setSearchValue] = useState('')
   const [isAdmin, setIsAdmin] = useState(false) // State for isAdmin
   const navigate = useNavigate()
+  const location = useLocation() // To track the current URL
 
   const isAuthenticated = ApiService.isAuthenticated()
 
@@ -25,15 +26,12 @@ const Navbar = () => {
     setSearchValue(e.target.value)
   }
 
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      if (searchValue) {
-        navigate(`/?search=${searchValue}`)
-      }
-    }, 300)
-
-    return () => clearTimeout(delayDebounceFn)
-  }, [searchValue, navigate])
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+    if (searchValue.trim()) {
+      navigate(`/?search=${encodeURIComponent(searchValue.trim())}`)
+    }
+  }
 
   const handleLogout = () => {
     const confirm = window.confirm('Are you sure you want to logout?')
@@ -45,6 +43,11 @@ const Navbar = () => {
     }
   }
 
+  // Reset the search value when navigating to another page
+  useEffect(() => {
+    setSearchValue('')
+  }, [location.pathname])
+
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -55,7 +58,7 @@ const Navbar = () => {
       </div>
 
       {/* SEARCH FORM */}
-      <form className="navbar-search" onSubmit={(e) => e.preventDefault()}>
+      <form className="navbar-search" onSubmit={handleSearchSubmit}>
         <input
           type="text"
           placeholder="Search products"

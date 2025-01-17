@@ -1,69 +1,73 @@
 .product-detail {
-  max-width: 400px;
-  margin: 8rem auto;
-  padding: 20px;
-  border: 1px solid #e0e0e0; /* Light gray border for modern minimal look */
-  border-radius: 10px;
-  background-color: #f9fafb; /* Light background for a clean, airy feel */
-  color: #333; /* Dark gray text for good readability */
+  max-width: 350px;
+  margin: 2rem auto;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #333;
   text-align: center;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-detail img {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .product-detail h1 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: #333; /* Darker text for the header */
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.product-detail h3 {
+  font-size: 1rem;
+  color: #555;
 }
 
 .product-detail p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   margin: 5px 0;
-  color: #555; /* Slightly lighter text for paragraphs */
+  color: #555;
 }
 
 .product-detail span {
   display: block;
-  font-size: 1.2rem;
-  color: #1c3d5a; /* Dark blue for pricing or important info */
-  margin: 10px 0;
+  font-size: 1.1rem;
+  color: #1c3d5a;
+  margin: 8px 0;
 }
 
 .product-detail .category,
 .product-detail .quantity,
 .product-detail .size {
-  font-size: 0.9rem;
-  color: #718093; /* Muted grayish-blue for labels */
+  font-size: 0.85rem;
+  color: #718093;
 }
 
 .product-detail button {
-  display: inline-block;
-  width: 100%;
-  padding: 10px;
-  margin-top: 15px;
+  width: 48%;
+  padding: 8px;
+  margin-top: 12px;
   border: none;
   border-radius: 5px;
-  background-color: #1c3d5a; /* Dark blue button color */
+  background-color: #1c3d5a;
   color: #fff;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .product-detail button:hover {
-  background-color: #004abf; /* Darker blue for hover */
-  transform: scale(1.05); /* Subtle scaling effect for interaction */
+  background-color: #004abf;
+  transform: scale(1.05);
 }
 
-.product-detail .quantity-controls {
+.quantity-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,12 +75,15 @@
 }
 
 .quantity-controls button {
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
+  width: 35px;
+  height: 35px;
+  font-size: 1.1rem;
   background-color: #1c3d5a;
+  border: none;
   border-radius: 5px;
   color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .quantity-controls button:hover {
@@ -84,23 +91,33 @@
 }
 
 .quantity-controls span {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
-  color: #333; /* Darker text for quantity count */
+  color: #333;
 }
+
 .mrp {
-  color: #ff0000; /* Red color for MRP */
-  font-size: 1.2em; /* Slightly larger font size */
-  font-weight: bold; /* Bold text */
-  margin: 10px 0; /* Margin for spacing */
-  display: block; /* Display as block element */
-  text-decoration: line-through; /* Strikethrough for MRP */
+  color: #ff0000;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 8px 0;
+  display: block;
+  text-decoration: line-through;
 }
 
 .price {
-  color: #1c3d5a; /* Dark blue color for price */
-  font-size: 1.4em; /* Larger font size for price */
-  font-weight: bold; /* Bold text */
-  margin: 10px 0; /* Margin for spacing */
-  display: block; /* Display as block element */
+  color: #1c3d5a;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 8px 0;
+  display: block;
 }
+
+.carousel-button {
+  margin-left: 5px;
+}
+
+.product-info {
+  margin-top: 15px;
+}
+

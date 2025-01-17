@@ -18,6 +18,7 @@ const EditProductPage = () => {
   const [productSize, setProductSize] = useState('')
   const [qty, setQty] = useState('')
   const [tags, setTags] = useState([]) // Add state for tags
+  const [otherImages, setOtherImages] = useState([]) // Add state for other images
 
   useEffect(() => {
     ApiService.getAllCategory().then((res) => setCategories(res.categoryList))
@@ -40,6 +41,17 @@ const EditProductPage = () => {
         setMessage('Failed to fetch product details')
         console.error(error)
       })
+
+    // Fetch all images for the product
+    ApiService.fetchAllImagesFromProductId(productId)
+      .then((response2) => {
+        const images = response2.data.map((img) => ({ id: img.id, imageUrl: img.imageUrl }))
+        setOtherImages(images)
+      })
+      .catch((error) => {
+        setMessage('Failed to fetch product images')
+        console.error(error)
+      })
   }, [productId])
 
   const handleImage = async (e) => {
@@ -55,51 +67,87 @@ const EditProductPage = () => {
     }
   }
 
+  const handleOtherImages = async (e) => {
+    const files = Array.from(e.target.files)
+    if (files.length + otherImages.length > 5) {
+      setMessage('You can only upload up to 5 images')
+      return
+    }
+
+    try {
+      const uploadedImages = await Promise.all(
+        files.map((file) => ApiService.uploadToCloudinary(file))
+      )
+      const newImages = uploadedImages.map((imageUrl, index) => ({
+        id: `new-${index}`, // Temporary ID for new images
+        imageUrl
+      }))
+      setOtherImages([...otherImages, ...newImages])
+      setMessage('Other images uploaded successfully')
+    } catch (error) {
+      setMessage(error.message || 'Failed to upload other images')
+    }
+  }
+
   const handleTagChange = (e) => {
     const tagInput = e.target.value
     const tagArray = tagInput.split(',').map((tag) => tag.trim()) // Split input by commas and trim spaces
     setTags(tagArray) // Update tags state with array
   }
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
-
-  // If you have any validation checks, keep them as required
-
-  const formData = new FormData()
-  formData.append('image', image)
-  formData.append('categoryId', categoryId)
-  formData.append('name', name)
-  formData.append('description', description)
-  formData.append('price', price)
-  formData.append('mrp', mrp)
-  formData.append('productSize', productSize)
-  formData.append('qty', qty)
-
-  // Append each tag individually to the form data
-  tags.forEach((tag, index) => {
-    formData.append(`tags[${index}]`, tag)
-  })
-
-  try {
-    // Call the updateProduct API with the formData
-    const response = await ApiService.updateProducttg(productId, formData)
-    if (response.status === 200) {
-      setMessage(response.message)
-      setTimeout(() => {
-        setMessage('')
-        navigate('/admin/products') // Redirect to products list after update
-      }, 3000)
+  const handleDeleteImage = async (imageId) => {
+    try {
+      await ApiService.deleteExtraImage(productId, imageId)
+      setOtherImages(otherImages.filter((image) => image.id !== imageId))
+      setMessage('Image deleted successfully')
+    } catch (error) {
+      setMessage('Failed to delete image')
+      console.error(error)
     }
-  } catch (error) {
-    setMessage(
-      error.response?.data?.message ||
-        error.message ||
-        'Unable to update product'
-    )
   }
-}
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    // If you have any validation checks, keep them as required
+
+    const formData = new FormData()
+    formData.append('image', image)
+    formData.append('categoryId', categoryId)
+    formData.append('name', name)
+    formData.append('description', description)
+    formData.append('price', price)
+    formData.append('mrp', mrp)
+    formData.append('productSize', productSize)
+    formData.append('qty', qty)
+
+    // Append each tag individually to the form data
+    tags.forEach((tag, index) => {
+      formData.append(`tags[${index}]`, tag)
+    })
+
+    try {
+      // Call the updateProduct API with the formData
+      const response = await ApiService.updateProducttg(productId, formData)
+      if (response.status === 200) {
+        // Call the setExtraImages API with the other images
+        const imageUrls = otherImages.map((img) => img.imageUrl)
+        await ApiService.setExtraImages(productId, imageUrls)
+
+        setMessage(response.message)
+        setTimeout(() => {
+          setMessage('')
+          navigate('/admin/products') // Redirect to products list after update
+        }, 3000)
+      }
+    } catch (error) {
+      setMessage(
+        error.response?.data?.message ||
+          error.message ||
+          'Unable to update product'
+      )
+    }
+  }
 
   return (
     <div className="product-container">
@@ -192,6 +240,28 @@ const handleSubmit = async (e) => {
           value={tags.join(', ')} // Display tags as a comma-separated string
           onChange={handleTagChange}
         />
+
+        <label htmlFor="otherImages">Other Images (up to 5)</label>
+        <input
+          type="file"
+          id="otherImages"
+          accept=".png, .jpeg, .webp"
+          multiple
+          onChange={handleOtherImages}
+        />
+        {otherImages.length > 0 && (
+          <div className="other-images-list">
+            {otherImages.map((image) => (
+              <img
+                key={image.id}
+                src={image.imageUrl}
+                alt={`Other image ${image.id}`}
+                style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                onClick={() => handleDeleteImage(image.id)}
+              />
+            ))}
+          </div>
+        )}
 
         <button type="submit">Update Product</button>
       </form>

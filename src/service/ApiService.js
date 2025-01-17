@@ -295,6 +295,7 @@ export default class ApiService {
             const response = await axios.get(`${this.BASE_URL}/product/${productId}/images`, {
                 headers: this.getHeader()
             })
+            console.log(response.data)
             return response.data;
         } catch {
             console.log("Can't fetch extra images")
@@ -315,6 +316,16 @@ export default class ApiService {
             return response.data;
         } catch (error) {
             console.log("Can't set extra images", error);
+        }
+    }
+
+    static async deleteExtraImage(productId, imageKey) {
+        try {
+            const response = await axios.delete(`${this.BASE_URL}/product/${productId}/delete-image/${imageKey}`, {
+                headers: this.getHeader()
+            })
+        } catch (error) {
+            console.log("Couldn't delete the image")
         }
     }
 }

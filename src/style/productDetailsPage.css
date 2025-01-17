@@ -1,7 +1,7 @@
 .product-detail {
   max-width: 350px;
   margin: 2rem auto;
-  padding: 15px;
+  padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #f9fafb;
@@ -19,12 +19,12 @@
 
 .product-detail h1 {
   font-size: 1.5rem;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: #333;
 }
 
-.product-detail h3 {
-  font-size: 1rem;
+.product-detail h4 {
+  font-size: 1.1rem;
   color: #555;
 }
 
@@ -37,7 +37,7 @@
 .product-detail span {
   display: block;
   font-size: 1.1rem;
-  color: #1c3d5a;
+  color: #003366; /* Dark Blue for emphasis */
   margin: 8px 0;
 }
 
@@ -50,11 +50,11 @@
 
 .product-detail button {
   width: 48%;
-  padding: 8px;
+  padding: 10px;
   margin-top: 12px;
   border: none;
   border-radius: 5px;
-  background-color: #1c3d5a;
+  background-color: #003366; /* Dark Blue for button */
   color: #fff;
   font-size: 0.9rem;
   font-weight: bold;
@@ -63,7 +63,7 @@
 }
 
 .product-detail button:hover {
-  background-color: #004abf;
+  background-color: #004abf; /* Lighter blue for hover effect */
   transform: scale(1.05);
 }
 
@@ -78,7 +78,7 @@
   width: 35px;
   height: 35px;
   font-size: 1.1rem;
-  background-color: #1c3d5a;
+  background-color: #003366; /* Dark Blue for quantity controls */
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -106,7 +106,7 @@
 }
 
 .price {
-  color: #1c3d5a;
+  color: #003366;
   font-size: 1.3em;
   font-weight: bold;
   margin: 8px 0;
@@ -120,4 +120,3 @@
 .product-info {
   margin-top: 15px;
 }
-

@@ -241,7 +241,7 @@ const EditProductPage = () => {
           onChange={handleTagChange}
         />
 
-        <label htmlFor="otherImages">Other Images (up to 5)</label>
+        <label htmlFor="otherImages">Upload Extra Images. </label>
         <input
           type="file"
           id="otherImages"
@@ -251,6 +251,7 @@ const EditProductPage = () => {
         />
         {otherImages.length > 0 && (
           <div className="other-images-list">
+            <h5>Click to remove images.</h5>
             {otherImages.map((image) => (
               <img
                 key={image.id}

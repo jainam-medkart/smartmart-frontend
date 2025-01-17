@@ -9,7 +9,7 @@ const ProductDetailsPage = () => {
   const [searchParams] = useSearchParams()
   const { cart, dispatch } = useCart()
   const [product, setProduct] = useState(null)
-  const [extraImages, setExtraImages] = useState([])
+  const [extraImages, setExtraImages] = useState([]) 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   useEffect(() => {
@@ -67,12 +67,10 @@ const ProductDetailsPage = () => {
     return <p>Loading product details...</p>
   }
 
-  const searchQuery = searchParams.get('search')
   const cartItem = cart.find((item) => item.id === product.id)
 
   return (
     <div className="product-detail">
-      {/* Image Carousel */}
       <div className="image-carousel">
         <div className="carousel-buttons">
           <img
@@ -80,23 +78,29 @@ const ProductDetailsPage = () => {
             alt={product?.name}
             className="product-image"
           />
-          <button className="carousel-button prev" onClick={goToPrevImage}>&lt;</button>
-          <button className="carousel-button next" onClick={goToNextImage}>&gt;</button>
+          <button className="carousel-button prev" onClick={goToPrevImage}>←</button>
+          <button className="carousel-button next" onClick={goToNextImage}>→</button>
         </div>
       </div>
 
       <div className="product-info">
         <h1>{product?.name}</h1>
-        <h3>WS_CODE : {product?.wsCode}</h3>
-        <p>{product?.description}</p>
-        <span className="mrp">${Number(product.mrp).toFixed(2)}</span>
-        <span className="price">${product.price.toFixed(2)}</span>
+        <h4>WS Code : {product?.wsCode}</h4>
+        <p>Description: {product?.description}</p>
+
+        <div className="pricing">
+          <span className="mrp">MRP: ${Number(product.mrp).toFixed(2)}</span>
+          <span className="price">Sales Price: ${product.price.toFixed(2)}</span>
+        </div>
+
         <p className="category">Category: {product?.category?.name}</p>
-        <p className="quantity">Available: {product?.qty} items</p>
-        <p className="size">Package: {product?.productSize}</p>
+        <p className="quantity">Available Stock: {product?.qty} items</p>
+        <p className="size">Package Size: {product?.productSize}</p>
+
         <div className="tags">
           <p>Tags: {product?.tags?.join(', ')}</p>
         </div>
+
         {cartItem ? (
           <div className="quantity-controls">
             <button onClick={decrementItem}>-</button>
@@ -105,7 +109,7 @@ const ProductDetailsPage = () => {
           </div>
         ) : (
           <button className="add-to-cart" onClick={addToCart}>
-            Add To Cart
+            Add to Cart
           </button>
         )}
       </div>

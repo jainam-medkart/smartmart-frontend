@@ -15,6 +15,7 @@ const AddProductPage = () => {
   const [productSize, setProductSize] = useState('');
   const [qty, setQty] = useState('');
   const [tags, setTags] = useState([]); // To hold tags
+  const [tagInput, setTagInput] = useState(''); // To hold the current input value
   const [otherImages, setOtherImages] = useState([]); // To hold other images
   const navigate = useNavigate();
 
@@ -53,11 +54,14 @@ const AddProductPage = () => {
     }
   };
 
-  const handleTagsChange = (e) => {
-    const tagValue = e.target.value;
-    if (e.key === 'Enter' && tagValue) {
-      setTags([...tags, tagValue]);
-      e.target.value = ''; // Clear input after adding tag
+  const handleTagInputChange = (e) => {
+    const value = e.target.value;
+    if (value.includes(',')) {
+      const newTags = value.split(',').map((tag) => tag.trim()).filter((tag) => tag !== '');
+      setTags([...tags, ...newTags]);
+      setTagInput('');
+    } else {
+      setTagInput(value);
     }
   };
 
@@ -133,7 +137,7 @@ const AddProductPage = () => {
         <h2>Add Product</h2>
         {message && <div className="message">{message}</div>}
 
-        <label htmlFor="image">Image</label>
+        <label htmlFor="image">Thumbnail Image</label>
         <input
           type="file"
           id="image"
@@ -208,12 +212,13 @@ const AddProductPage = () => {
           onChange={(e) => setQty(e.target.value)}
         />
 
-        <label htmlFor="tags">Tags</label>
+        <label htmlFor="tags">Tags (comma separated)</label>
         <input
           type="text"
           id="tags"
-          placeholder="Press Enter to add tag"
-          onKeyDown={handleTagsChange}
+          placeholder="e.g. test, magic"
+          value={tagInput}
+          onChange={handleTagInputChange}
         />
         {tags.length > 0 && (
           <div className="tags-list">

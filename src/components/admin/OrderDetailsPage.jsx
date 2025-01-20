@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import '../../style/adminOrderDetails.css'
-import ApiService from '../../service/ApiService'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import '../../style/adminOrderDetails.css';
+import ApiService from '../../service/ApiService';
 
 const ORDER_STATUS = [
   'PENDING',
@@ -10,49 +10,51 @@ const ORDER_STATUS = [
   'DELIVERED',
   'CANCELLED',
   'REFUNDED',
-]
+];
 
 const AdminOrderDetailsPage = () => {
-  const { itemId } = useParams()
-  const [orderItems, setOrderItems] = useState([])
-  const [message, setMessage] = useState('')
-  const [selectedStatus, setSelectedStatus] = useState({})
+  const { itemId } = useParams();
+  const [orderItems, setOrderItems] = useState([]);
+  const [message, setMessage] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState({});
 
   useEffect(() => {
-    fetchOrderDetails(itemId)
-  }, [itemId])
+    fetchOrderDetails(itemId);
+  }, [itemId]);
 
   const fetchOrderDetails = async (itemId) => {
     try {
-      const response = await ApiService.getOrderItemById(itemId)
-      setOrderItems(response.orderItemList)
+      const response = await ApiService.getOrderItemById(itemId);
+      setOrderItems(response.orderItemList);
     } catch (error) {
-      console.log(error.message || error)
+      console.log(error.message || error);
     }
-  }
+  };
 
   const handleStatusChange = (orderItemId, newStatus) => {
-    setSelectedStatus({ ...selectedStatus, [orderItemId]: newStatus })
-  }
+    setSelectedStatus({ ...selectedStatus, [orderItemId]: newStatus });
+  };
 
   const handleSubmitStatusChange = async (orderItemId) => {
     try {
-      await ApiService.updateOrderItemStatus(
-        orderItemId,
-        selectedStatus[orderItemId]
-      )
-      setMessage('Order item status was successfully updated')
+      await ApiService.updateOrderItemStatus(orderItemId, selectedStatus[orderItemId]);
+      setMessage('Order item status was successfully updated');
       setTimeout(() => {
-        setMessage('')
-      }, 3000)
+        setMessage('');
+      }, 3000);
     } catch (error) {
       setMessage(
         error.response?.data?.message ||
-          error.message ||
-          'Unable to update order item status'
-      )
+        error.message ||
+        'Unable to update order item status'
+      );
     }
-  }
+  };
+
+  const getAvailableStatuses = (currentStatus) => {
+    const currentIndex = ORDER_STATUS.indexOf(currentStatus);
+    return ORDER_STATUS.slice(currentIndex + 1);
+  };
 
   return (
     <div className="order-details-page">
@@ -107,7 +109,8 @@ const AdminOrderDetailsPage = () => {
                   </div>
                   <div className="info-field">
                     <strong>Date Ordered:</strong>
-                    <p>{new Date(orderItem.createdAt).toLocaleDateString()}</p>
+                    <p>{new Date(orderItem.createdAt).toLocaleString()}</p>
+                    
                   </div>
                 </div>
 
@@ -115,12 +118,15 @@ const AdminOrderDetailsPage = () => {
                 <div className="status-select-container">
                   <select
                     className="status-option"
-                    value={selectedStatus[orderItem.id] || orderItem.status}
+                    value={selectedStatus[orderItem.id] || ''}
                     onChange={(e) =>
                       handleStatusChange(orderItem.id, e.target.value)
                     }
                   >
-                    {ORDER_STATUS.map((status) => (
+                    <option value="" disabled>
+                      Select new status
+                    </option>
+                    {getAvailableStatuses(orderItem.status).map((status) => (
                       <option key={status} value={status}>
                         {status}
                       </option>
@@ -186,7 +192,7 @@ const AdminOrderDetailsPage = () => {
         <p>Loading order details...</p>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default AdminOrderDetailsPage
+export default AdminOrderDetailsPage;

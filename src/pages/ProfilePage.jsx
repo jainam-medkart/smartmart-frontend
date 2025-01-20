@@ -39,6 +39,8 @@ const ProfilePage = () => {
         currentPage * itemsPerPage
     );
 
+    // console.log(paginatedOrders )
+
 
     return (
         <div className="profile-page">
@@ -82,6 +84,9 @@ const ProfilePage = () => {
                                         <p><strong>Status: </strong>{order.status}</p>
                                         <p><strong>Quantity: </strong>{order.quantity}</p>
                                         <p><strong>Price: </strong>{order.price.toFixed(2)}</p>
+                                        {/* <p><strong>Ordered On: </strong>{new Date(order.createdAt).toLocaleDateString()}</p> */}
+                                        <p><strong>Ordered On: </strong>{new Date(order.createdAt).toLocaleString()}</p>
+
                                     </div>
                                 </li>
                             ))}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import '../../style/adminOrderPage.css'
+// import '../../style/adminOrderPage.css'
+import '../../style/adminOrderPage1.css'
+
 import Pagination from "../common/Pagination";
 import ApiService from "../../service/ApiService";
 

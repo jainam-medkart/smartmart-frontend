@@ -1,0 +1,106 @@
+/* Admin Orders Page Styling */
+.admin-orders-page {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.admin-orders-page h2 {
+    font-size: 24px;
+    color: #003366; /* Dark Blue */
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.statusFilter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.statusFilter label {
+    font-size: 16px;
+    color: #003366; /* Dark Blue */
+}
+
+.statusFilter select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #003366; /* Dark Blue */
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.orders-table th, .orders-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.orders-table th {
+    background-color: #003366; /* Dark Blue */
+    color: #fff;
+}
+
+.orders-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.orders-table td button {
+    padding: 6px 12px;
+    background-color: #003366; /* Dark Blue */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.orders-table td button:hover {
+    background-color: #002244; /* Slightly darker blue */
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    padding: 8px 12px;
+    background-color: #003366; /* Dark Blue */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #002244; /* Slightly darker blue */
+}
+
+.pagination-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

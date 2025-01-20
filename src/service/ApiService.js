@@ -339,12 +339,13 @@ export default class ApiService {
     }
 
     static async createAdmin(adminData) {
-        // console.log(adminData);
+        console.log(adminData);
         try {
             const response = await axios.post(`${this.BASE_URL}/auth/register-admin`, adminData, {
                 headers: this.getHeader()
             });
-            return response.data.message;
+            console.log(response)
+            return response.data;
         } catch (error) {
             console.log(error.response?.data);
             return error.response?.data?.message || error.message;

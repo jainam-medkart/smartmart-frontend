@@ -31,7 +31,6 @@ const CreateAdminPage = () => {
 
         try {
             const response = await ApiService.createAdmin(adminData);
-            console.log(response)
             if (response.status === 200) {
                 setSuccessMessage("Admin created successfully!");
                 setError(null);
@@ -43,7 +42,7 @@ const CreateAdminPage = () => {
                     confirmPassword: "",
                 });
             } else {
-                setError(response.data?.message || "Unable to create admin");
+                setError(response.message || "Unable to create admin");
             }
         } catch (error) {
             setError(error.response?.data?.message || error.message || "Unable to create admin");

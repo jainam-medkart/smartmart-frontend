@@ -1,52 +1,60 @@
-import React, { useState, useEffect } from 'react'
-import '../../style/navbar.css'
-import { NavLink, useNavigate, useLocation } from 'react-router-dom'
-import ApiService from '../../service/ApiService'
-import Logo from '../../assets/Store.svg'
+import React, { useState, useEffect } from 'react';
+import '../../style/navbar.css';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import ApiService from '../../service/ApiService';
+import Logo from '../../assets/Store.svg';
 
 const Navbar = () => {
-  const [searchValue, setSearchValue] = useState('')
-  const [isAdmin, setIsAdmin] = useState(false) // State for isAdmin
-  const navigate = useNavigate()
-  const location = useLocation() // To track the current URL
+  const [searchValue, setSearchValue] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false); // State for isAdmin
+  const navigate = useNavigate();
+  const location = useLocation(); // To track the current URL
 
-  const isAuthenticated = ApiService.isAuthenticated()
+  const isAuthenticated = ApiService.isAuthenticated();
 
   useEffect(() => {
     // Async call to get isAdmin
     const checkAdminStatus = async () => {
-      const adminStatus = await ApiService.isAdmin()
-      setIsAdmin(adminStatus)
-    }
+      const adminStatus = await ApiService.isAdmin();
+      setIsAdmin(adminStatus);
+    };
 
-    checkAdminStatus()
-  }, [])
+    checkAdminStatus();
+  }, []);
 
   const handleSearchChange = (e) => {
-    setSearchValue(e.target.value)
-  }
+    const value = e.target.value;
+    setSearchValue(value);
+    if (value.trim()) {
+      navigate(`/?search=${encodeURIComponent(value.trim())}`);
+    } else {
+      navigate('/');
+    }
+  };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (searchValue.trim()) {
-      navigate(`/?search=${encodeURIComponent(searchValue.trim())}`)
+      navigate(`/?search=${encodeURIComponent(searchValue.trim())}`);
+    } else {
+      navigate('/');
     }
-  }
+  };
 
   const handleLogout = () => {
-    const confirm = window.confirm('Are you sure you want to logout?')
+    const confirm = window.confirm('Are you sure you want to logout?');
     if (confirm) {
-      ApiService.logout()
+      ApiService.logout();
       setTimeout(() => {
-        navigate('/login')
-      }, 500)
+        navigate('/login');
+      }, 500);
     }
-  }
+  };
 
   // Reset the search value when navigating to another page
   useEffect(() => {
-    setSearchValue('')
-  }, [location.pathname])
+    setSearchValue('');
+  }, [location.pathname]);
 
   return (
     <nav className="navbar">
@@ -78,7 +86,7 @@ const Navbar = () => {
         {isAuthenticated && <NavLink onClick={handleLogout}>Logout</NavLink>}
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

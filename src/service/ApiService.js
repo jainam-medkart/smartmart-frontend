@@ -267,7 +267,14 @@ export default class ApiService {
         const response = await axios.get(`${this.BASE_URL}/user/my-info`, {
             headers: this.getHeader()
         });
-        return response.data.user.role === "ADMIN";
+        return response.data.user.role === "ADMIN" || response.data.user.role === "ROOT_ADMIN";
+    }
+
+    static async isRoot() {
+        const response = await axios.get(`${this.BASE_URL}/user/my-info`, {
+            headers: this.getHeader()
+        });
+        return response.data.user.role === "ROOT_ADMIN";
     }
 
     // Add the function to ApiService
@@ -328,6 +335,36 @@ export default class ApiService {
             })
         } catch (error) {
             console.log("Couldn't delete the image")
+        }
+    }
+
+    static async createAdmin(adminData) {
+        // console.log(adminData);
+        try {
+            const response = await axios.post(`${this.BASE_URL}/auth/register-admin`, adminData, {
+                headers: this.getHeader()
+            });
+            return response.data.message;
+        } catch (error) {
+            console.log(error.response?.data);
+            return error.response?.data?.message || error.message;
+        }
+    }
+
+    static async fetchRevenueTrends(startDate, endDate) {
+        try {
+            const response = await axios.get(`${this.BASE_URL}/analytics/revenue-trends`, {
+                headers: this.getHeader(),
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            });
+            console.log(response.data)
+            return response.data;
+        } catch (error) {
+            console.error("Failed to fetch revenue trends:", error);
+            throw error;
         }
     }
 }

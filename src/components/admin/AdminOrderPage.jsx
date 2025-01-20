@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import '../../style/adminOrderPage.css'
-import '../../style/adminOrderPage1.css'
-
+import '../../style/adminOrderPage1.css';
 import Pagination from "../common/Pagination";
 import ApiService from "../../service/ApiService";
+// import RevenueTrendsChart from './RevenueTrendsChart';
+import RevenueTrendsChart from "../analystics/RevenueTrendsChart";
 
-const OrderStatus = ["PENDING", "CONFIRMED" , "DELIVERING" , "DELIVERED" , "CANCELLED" , "REFUNDED"];
+const OrderStatus = ["PENDING", "CONFIRMED", "DELIVERING", "DELIVERED", "CANCELLED", "REFUNDED"];
 
 const AdminOrdersPage = () => {
-
     const [orders, setOrders] = useState([]);
     const [filteredOrders, setFilteredOrders] = useState([]);
     const [statusFilter, setStatusFilter] = useState('');
     const [searchStatus, setSearchStatus] = useState('');
-
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [error, setError] = useState(null);
     const itemsPerPage = 10;
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,7 +32,6 @@ const AdminOrdersPage = () => {
                 response = await ApiService.getOrderItemByStatus();
             }
             const orderList = response.orderItemList || [];
-
             setTotalPages(Math.ceil(orderList.length / itemsPerPage));
             setOrders(orderList);
             setFilteredOrders(orderList.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
@@ -73,6 +69,8 @@ const AdminOrdersPage = () => {
 
     return (
         <div className="admin-orders-page">
+            <h2>Revenue Trends</h2>
+            {/* <RevenueTrendsChart startDate="2025-01-20" endDate="2025-01-20" /> */}
             <h2>Orders</h2>
             {error && <p className="error-message">{error}</p>}
             <div className="filter-container">
@@ -98,7 +96,6 @@ const AdminOrdersPage = () => {
                         <th>Actions</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     {filteredOrders.map(order => (
                         <tr key={order.id}>
@@ -113,13 +110,15 @@ const AdminOrdersPage = () => {
                         </tr>
                     ))}
                 </tbody>
-
             </table>
 
             <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                onPageChange={(page) => setCurrentPage(page)} />
+                onPageChange={(page) => setCurrentPage(page)}
+            />
+
+            
         </div>
     );
 }

@@ -30,6 +30,7 @@ import AddProductPage from './components/admin/AddProductPage.jsx'
 import EditProductPage from './components/admin/EditProductPage.jsx'
 import AdminOrdersPage from './components/admin/AdminOrderPage.jsx'
 import AdminOrderDetailsPage from './components/admin/OrderDetailsPage.jsx'
+import AdminRegistration from './components/admin/AdminRegistration.jsx'
 
 const App = () => {
   return (
@@ -78,6 +79,7 @@ const TransitionWrapper = () => {
             <Route path='/admin/edit-product/:productId' element={<AdminRoute element={<EditProductPage/>} />} />
             <Route path='/admin/orders' element={<AdminRoute element={<AdminOrdersPage/>} />} />
             <Route path='/admin/order-details/:itemId' element={<AdminRoute element={<AdminOrderDetailsPage/>} />} />
+            <Route path='/admin/add-admin' element={<AdminRoute element={<AdminRegistration/>} />} />
           </Routes>
         </div>
       </CSSTransition>

@@ -101,16 +101,20 @@ const ProductDetailsPage = () => {
           <p>Tags: {product?.tags?.join(', ')}</p>
         </div>
 
-        {cartItem ? (
-          <div className="quantity-controls">
-            <button onClick={decrementItem}>-</button>
-            <span>{cartItem.quantity}</span>
-            <button onClick={incrementItem}>+</button>
-          </div>
+        {product.qty > 0 ? (
+          cartItem ? (
+            <div className="quantity-controls">
+              <button onClick={decrementItem}>-</button>
+              <span>{cartItem.quantity}</span>
+              <button onClick={incrementItem}>+</button>
+            </div>
+          ) : (
+            <button className="add-to-cart" onClick={addToCart}>
+              Add to Cart
+            </button>
+          )
         ) : (
-          <button className="add-to-cart" onClick={addToCart}>
-            Add to Cart
-          </button>
+          <p className="out-of-stock">Out of Stock</p>
         )}
       </div>
     </div>
